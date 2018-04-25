@@ -42,17 +42,18 @@ function deleteDataByID(table, id) {
     return query('DELETE FROM ?? WHERE id = ?', [table, id]);
 }
 
-function updateDate(table, values, id) {
+function updateData(table, values, id) {
     return query('UPDATE ?? SET ? WHERE id = ?', [table, values, id]);
 }
 
-function getDataByID(table, id) {
+function getDataById(table, id) {
     return query('SELECT * FROM ?? WHERE id = ?', [table, id]);
 }
 
 module.exports = {
+    query,
     insertData,
     deleteDataByID,
-    updateDate,
-    getDataByID
+    updateData,
+    getDataById
 };
