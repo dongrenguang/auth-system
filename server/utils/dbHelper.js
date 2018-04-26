@@ -4,6 +4,7 @@
  */
 
 const mysql = require('mysql');
+
 const dbConfig = require('../../config').database;
 
 const pool = mysql.createPool({

@@ -3,20 +3,28 @@ const logger = require('koa-logger');
 const Koa = require('koa');
 const koaStatic = require('koa-static');
 const path = require('path');
+const session = require('koa-session');
 const views = require('koa-views');
 
-const app = new Koa();
+const config = require('../config');
 const routers = require('./routers/index');
 
+const app = new Koa();
+
 app.use(logger());
-app.use(bodyPaser());
+
+app.keys = ['auth', 'system', 'dongrenguang'];
+app.use(session({
+    key: 'koa:sess:auth-system'
+}, app));
 app.use(koaStatic(path.join(__dirname, '../static')));
+app.use(bodyPaser());
 app.use(views(path.join(__dirname, './views'), {
     extension: 'ejs'
 }));
 app.use(routers.routes()).use(routers.allowedMethods());
 
-const port = 8080;
+const port = config.port;
 app.listen(port, () => {
     console.log(`Server is running at ${port} port...`);
 });

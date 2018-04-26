@@ -4,6 +4,7 @@
  */
 
 module.exports = {
+    port: 8080,
     database: {
         DATABASE: 'auth_system',
         USERNAME: 'root',
